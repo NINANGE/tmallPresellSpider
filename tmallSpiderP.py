@@ -19,11 +19,11 @@ import re
 
 #和购旗舰店 田田家园家居旗舰店 ikazz旗舰店 卡依莱芙旗舰店 林氏木业旗舰店 林氏旗舰店
 import sys
-import importlib
-importlib.reload(sys)
-sys.getdefaultencoding()
-
-# sys.setdefaultencoding('utf-8')
+# import importlib
+# importlib.reload(sys)
+# sys.getdefaultencoding()
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 client = pymongo.MongoClient('localhost',27017)
 db = client.TmallScrapy
