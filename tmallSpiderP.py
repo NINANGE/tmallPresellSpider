@@ -38,42 +38,40 @@ allShopName = pd.read_excel('allShopName.xlsx')
 def tmallDataSEL():
     # driver = webdriver.Firefox(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/geckodriver')
     # TODO:XDF Chrome欲歌浏览器
-    options = webdriver.ChromeOptions()
-    # options.add_extension('AdBlock_v3.15.0.crx') # TODO:XDF Chrome欲歌广告过滤插件
+    #options = webdriver.ChromeOptions()
+   # options.add_extension('AdBlock_v3.15.0.crx') # TODO:XDF Chrome欲歌广告过滤插件
     # 设置中文
-    options.add_argument('lang=zh_CN.UTF-8')
-    prefs = {"profile.managed_default_content_settings.images": 2}
-    options.add_experimental_option("prefs",prefs) #TODO:XDF 禁止加载图片
-    # options.add_argument("headless")
+    #options.add_argument('lang=zh_CN.UTF-8')
+    #prefs = {"profile.managed_default_content_settings.images": 2}
+    #options.add_experimental_option("prefs",prefs) #TODO:XDF 禁止加载图片
+    #options.add_argument("headless")
     # 更换头部
-    options.add_argument('user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
+    #options.add_argument('user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
 
 
-    driver = webdriver.Chrome(chrome_options=options,executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
+    #driver = webdriver.Chrome(chrome_options=options,executable_path=r'/usr/bin/chromedriver')
     #
     # webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs')
-    wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
+    #wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
 
     # TODO:XDF PhantomJS无头浏览器
-    # dcap = dict(DesiredCapabilities.PHANTOMJS)
-    # dcap["phantomjs.page.settings.userAgent"] = (
-    # "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36")  # 设置user-agent请求头
-    # dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
+    dcap = dict(DesiredCapabilities.PHANTOMJS)
+    dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36")  # 设置user-agent请求头
+    dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
     #
     #
-    # service_args = []
-    # service_args.append('--load-images=no')  ##关闭图片加载
-    # service_args.append('--disk-cache=yes')  ##开启缓存
-    # service_args.append('--ignore-ssl-errors=true')  ##忽略https错误
-    # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs',
-    #                              service_args=service_args, desired_capabilities=dcap)
-    # # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs')
-    # wait = WebDriverWait(driver, 60, 0.5)  # 表示给browser浏览器一个10秒的加载时间
+    service_args = []
+    service_args.append('--load-images=no')  ##关闭图片加载
+    service_args.append('--disk-cache=yes')  ##开启缓存
+    service_args.append('--ignore-ssl-errors=true')  ##忽略https错误
+    driver = webdriver.PhantomJS(executable_path=r'/usr/bin/phantomjs',service_args=service_args, desired_capabilities=dcap)
+    # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs')
+    wait = WebDriverWait(driver, 60, 0.5)  # 表示给browser浏览器一个10秒的加载时间
     #
-    # driver.implicitly_wait(20)
-    # driver.set_page_load_timeout(20)
+    driver.implicitly_wait(20)
+    driver.set_page_load_timeout(20)
 
-    print('即将开始。。。')
+    
     # driver.get("https://www.taobao.com/")
     try:
         driver.get("https://s.taobao.com/search")
@@ -219,7 +217,7 @@ def tmallDataSEL():
                                     break
                                 else:
                                     style = '-'
-                            print (shopName,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),detailPrice,address,detailURL,title,mainPic,presellPrice,popularity) #,paymentBeginDate,paymentFinishDate,reserveCount
+                            print shopName,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),detailPrice,address,detailURL,title,mainPic,presellPrice,popularity #,paymentBeginDate,paymentFinishDate,reserveCount
 
 
                             if len(reserveCount)>0:
