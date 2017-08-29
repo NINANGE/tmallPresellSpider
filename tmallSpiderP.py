@@ -36,49 +36,45 @@ allShopName = pd.read_excel('allShopName.xlsx')
 
 #TODO:EXP 从首页点击到第二页情况
 def tmallDataSEL():
-    # driver = webdriver.Firefox(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/geckodriver')
     # TODO:XDF Chrome欲歌浏览器
-    #options = webdriver.ChromeOptions()
-   # options.add_extension('AdBlock_v3.15.0.crx') # TODO:XDF Chrome欲歌广告过滤插件
-    # 设置中文
-    #options.add_argument('lang=zh_CN.UTF-8')
-    #prefs = {"profile.managed_default_content_settings.images": 2}
-    #options.add_experimental_option("prefs",prefs) #TODO:XDF 禁止加载图片
-    #options.add_argument("headless")
-    # 更换头部
-    #options.add_argument('user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
+    # options = webdriver.ChromeOptions()
+    # # options.add_extension('AdBlock_v3.15.0.crx') # TODO:XDF Chrome欲歌广告过滤插件
+    # # 设置中文
+    # options.add_argument('lang=zh_CN.UTF-8')
+    # prefs = {"profile.managed_default_content_settings.images": 2}
+    # options.add_experimental_option("prefs", prefs)  # TODO:XDF 禁止加载图片
+    # # 更换头部
+    # options.add_argument(
+    #     'user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
+    # driver = webdriver.Chrome(chrome_options=options,
+    #                           executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
+    # wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
 
-
-    #driver = webdriver.Chrome(chrome_options=options,executable_path=r'/usr/bin/chromedriver')
-    #
-    # webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs')
-    #wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
 
     # TODO:XDF PhantomJS无头浏览器
     dcap = dict(DesiredCapabilities.PHANTOMJS)
     dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36")  # 设置user-agent请求头
     dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
-    #
-    #
+
     service_args = []
     service_args.append('--load-images=no')  ##关闭图片加载
     service_args.append('--disk-cache=yes')  ##开启缓存
     service_args.append('--ignore-ssl-errors=true')  ##忽略https错误
-    driver = webdriver.PhantomJS(executable_path=r'/usr/bin/phantomjs',service_args=service_args, desired_capabilities=dcap)
-    # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs')
+
+    driver = webdriver.PhantomJS(executable_path=r'/usr/bin/phantomjs',service_args=service_args, desired_capabilities=dcap) #TODO:XDF 针对Linux
+
+    # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs', desired_capabilities=dcap) #TODO:XDF 针对本地调试
     wait = WebDriverWait(driver, 60, 0.5)  # 表示给browser浏览器一个10秒的加载时间
     #
-    driver.implicitly_wait(20)
-    driver.set_page_load_timeout(20)
+    driver.implicitly_wait(30)
+    driver.set_page_load_timeout(30)
 
-    
-    # driver.get("https://www.taobao.com/")
     try:
         driver.get("https://s.taobao.com/search")
     except:
-        pass
-        # driver.save_screenshot('RecordProcess/beginLoding.png')
+        driver.save_screenshot('RecordProcess/quit.png')
         driver.quit()
+        pass
 
     time.sleep(1)
 
@@ -86,11 +82,11 @@ def tmallDataSEL():
         print('进来了---%s' % i)
         driver.find_element_by_xpath('//*[@id="q"]').clear()
         time.sleep(2)
-        # driver.save_screenshot('RecordProcess/begin.png')
+        driver.save_screenshot('RecordProcess/begin.png')
         driver.find_element_by_xpath('//*[@id="q"]').send_keys(allShopName['shopName'][i])
         print('地址********%s'%(allShopName['shopName'][i]))
         driver.find_element_by_xpath('//*[@id="J_SearchForm"]/button').click()
-        # driver.save_screenshot('RecordProcess/ceShiPic%s1.png' % i)
+        driver.save_screenshot('RecordProcess/ceShiPic%s1.png' % i)
         while True:
             wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'icon-btn-top')))
 
@@ -101,7 +97,7 @@ def tmallDataSEL():
             doc = pq(html)
 
             list=doc('#mainsrp-itemlist .items').eq(0).children().items()
-            # driver.save_screenshot('RecordProcess/ceShiPic%s2.png'%i)
+            driver.save_screenshot('RecordProcess/ceShiPic%s2.png'%i)
             for data in list:
                 print('即将获取内容********')
                 Id = str(pq(data.find('.row.row-2.title').html()).attr('data-nid'))
@@ -124,7 +120,11 @@ def tmallDataSEL():
                 print(now_handle, detailURL,xpathID)
                 time.sleep(3)
                 # driver.find_element_by_xpath(xpathID).send_keys(Keys.RETURN)
-                driver.find_element_by_xpath(xpathID).click()
+                try:
+                    driver.find_element_by_xpath(xpathID).click()
+                except Exception as e:
+                    print '超时...跳到下一个宝贝%s'%e
+                    continue
 
                 # print '测试一下下2'
                 all_handle = driver.window_handles
@@ -139,37 +139,35 @@ def tmallDataSEL():
                             print ('需要登录----')
                             # time.sleep(2)
                             # driver.implicitly_wait(10)
-                            # driver.save_screenshot('RecordProcess/loginPic1.png')
+                            driver.save_screenshot('RecordProcess/loginPic1.png')
                             driver.switch_to.frame("J_loginIframe")
                             time.sleep(5)
-                            # driver.save_screenshot('RecordProcess/loginPic2.png')
+                            driver.save_screenshot('RecordProcess/loginPic2.png')
                             loginBtn = driver.find_element_by_xpath('//*[@id="J_Quick2Static"]').click()
-                            # driver.save_screenshot('RecordProcess/loginPic3.png')
+                            driver.save_screenshot('RecordProcess/loginPic3.png')
                             time.sleep(2)
 
                             driver.find_element_by_name("TPL_username").send_keys("13672456277")
                             driver.find_element_by_name("TPL_password").send_keys("248552ZZN")
-                            # driver.save_screenshot('RecordProcess/loginPic4.png')
+                            driver.save_screenshot('RecordProcess/loginPic4.png')
                             #
                             loginBtn = driver.find_element_by_xpath('//*[@id="J_SubmitStatic"]')
-                            # driver.save_screenshot('RecordProcess/loginPic5.png')
+                            driver.save_screenshot('RecordProcess/loginPic5.png')
                             # loginBtn.send_keys(Keys.RETURN)
                             loginBtn.click()
-                            # driver.save_screenshot('RecordProcess/loginPic6.png')
                             print  ('login_success****')
                         wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'tb-detail-hd')))  # 显性等待
                         time.sleep(5)  # 这里得让他睡眠一下，否则第二页开始会报错(加载数据)
                         driver.implicitly_wait(30)  # 隐性等待30秒，如果30之内页面加载完毕，往下执行，否则超时会报错，需要处理
                         try:
                             detailDoc = pq(driver.page_source)
-                            # driver.save_screenshot('RecordProcess/secPage.png')
+                            driver.save_screenshot('RecordProcess/secPage.png')
                             # TODO:XDF 这里需要注意一下，src图片链接可以不丰在https，需要自己手动拼接
                             mainPics = detailDoc.find('#J_ImgBooth').attr('src')
                             if 'https:' in mainPics:
                                 mainPic = mainPics
                             else:
                                 mainPic = 'https:' + mainPics
-                            # print ('没有阻塞*****2')
                             # TODO:XDF 这里要注意，源码中可能存在xmlns，用pq是爬取不到的，要用lxml的tree抓取（非常坑爹）
                             if 'xmlns' in detailDoc.find('.tb-detail-hd').html():
                                 print ('存在xmlns--%s' % detailDoc.find('.tb-detail-hd').html())
@@ -180,11 +178,9 @@ def tmallDataSEL():
                             else:
                                 title = detailDoc.find('#detail .tb-detail-hd h1').text().replace('\r\n', '').replace(' ','').replace('\n', '').replace('\t', '')
 
-                            # print ('没有阻塞*****3')
                             presellPrice = detailDoc.find('#J_PromoBox').text().replace('\r\n', '').replace(' ', '').replace('\n', '').replace('¥', '')
                             address = detailDoc.find('#J_deliveryAdd').text()
                             # 收藏人数
-
                             popularity = detailDoc.find('#J_CollectCount').text().replace('（', '').replace('人气）', '')
                             shopName = str(allShopName['shopName'][i])
                             paymentDate = detailDoc.find('.J_step2Time').text().split('~')
@@ -199,16 +195,14 @@ def tmallDataSEL():
                             categoryIdContent = str(detailDoc.find('#J_ZebraPriceDesc').attr('mdv-cfg')).replace(' ','').replace('{', '').replace('}', '')
                             categoryIds = '.*catId:([0-9]+)'
                             categoryId = re.compile(categoryIds).findall(categoryIdContent)[0]
-                            # print ('没有阻塞*****4')
-                            # for h in range(0, len(allCategory)):
-                            #     if str(allCategory['CategoryId'][h]) == categoryId:
-                            #         categoryName = str(allCategory['CategoryName'][h])
-                            #         break
-                            #     else:
-                            #         categoryName = '-'
+                            for h in range(0, len(allCategory)):
+                                if str(allCategory['CategoryId'][h]) == categoryId:
+                                    categoryName = str(allCategory['CategoryName'][h])
+                                    break
+                                else:
+                                    categoryName = '-'
 
                             styleData = detailDoc.find('#J_AttrUL').children().items()
-
 
                             for data in styleData:
                                 if '风格: ' in data.text():
@@ -217,16 +211,14 @@ def tmallDataSEL():
                                     break
                                 else:
                                     style = '-'
-                            print shopName,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),detailPrice,address,detailURL,title,mainPic,presellPrice,popularity #,paymentBeginDate,paymentFinishDate,reserveCount
+                            print shopName,categoryName,datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),detailPrice,address,detailURL,title,mainPic,presellPrice,popularity #,paymentBeginDate,paymentFinishDate,reserveCount
 
 
                             if len(reserveCount)>0:
                                 print ('----------进来了吗？')
                                 product = {
-                                    # 'price': price,
                                     'title': title,
                                     'ID': Id,
-                                    # 'payPerson': payPerson,
                                     'addRess': address,
                                     'shopName': shopName,
                                     'mainPic': mainPic,
@@ -239,7 +231,7 @@ def tmallDataSEL():
                                     'presellPrice': presellPrice,
                                     'style': style,
                                     'categoryId': categoryId,
-                                    # 'categoryName': categoryName,
+                                    'categoryName': categoryName,
                                     'spiderTime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                                 }
                                 saveTmallTB(product)
@@ -249,7 +241,7 @@ def tmallDataSEL():
                             print ('*******即将退出*******')
                             time.sleep(3)
                             driver.close()  # 关闭当前窗口
-                            # driver.quit()
+                            print ('*******已关闭*******')
 
                 #输出主窗口句柄
                 print (now_handle)
@@ -261,6 +253,7 @@ def tmallDataSEL():
             except Exception as e:
                 print ('miss----%s'%e)
                 driver.find_element_by_xpath('//*[@id="mainsrp-pager"]/div/div/div/ul/li[@class="item next"]/a').click() #send_keys(Keys.RETURN)
+                print '即将到达下一页'
             finally:
                 print ('退出吧')
 
@@ -279,7 +272,7 @@ def saveTmallTB(result):
 
 #TODO:EXP 给定ID和店铺情况
 def tmallGivenIDAndShopName():
-
+    # TODO:XDF Chrome欲歌浏览器
     # options = webdriver.ChromeOptions()
     # # 设置中文
     # options.add_argument('lang=zh_CN.UTF-8')
@@ -290,13 +283,7 @@ def tmallGivenIDAndShopName():
     # driver = webdriver.Chrome(chrome_options=options,executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
 
 
-    # dcap = dict(DesiredCapabilities.PHANTOMJS)
-    # dcap["phantomjs.page.settings.userAgent"] = (
-    #     # "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 6 Build/LYZ28E) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.23 Mobile Safari/537.36"
-    #     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"
-    # )
-    # dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
-
+    # TODO:XDF PhantomJS无头浏览器
     dcap = dict(DesiredCapabilities.PHANTOMJS)
     dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36")  # 设置user-agent请求头
     dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
@@ -306,8 +293,11 @@ def tmallGivenIDAndShopName():
     service_args.append('--load-images=no')  ##关闭图片加载
     service_args.append('--disk-cache=yes')  ##开启缓存
     service_args.append('--ignore-ssl-errors=true')  ##忽略https错误
-    driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs',service_args=service_args,desired_capabilities=dcap)
-    # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs')
+    #TODO:XDF 针对本地调试
+    # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs',service_args=service_args,desired_capabilities=dcap)
+
+    driver = webdriver.PhantomJS(executable_path=r'/usr/bin/phantomjs', service_args=service_args,desired_capabilities=dcap)  # TODO:XDF 针对Linux
+    # TODO:XDF 针对Linux服务器
     wait = WebDriverWait(driver, 60, 0.5)  # 表示给browser浏览器一个10秒的加载时间
 
     driver.implicitly_wait(20)
@@ -325,10 +315,8 @@ def tmallGivenIDAndShopName():
             time.sleep(5)
             # TODO:XDF:1 因为无头浏览器是无界面的，所以只能通过截图来查看过程，下面同理（仅仅针对phantomjs无头浏览器，其它会报错）
             driver.save_screenshot('RecordProcess/process1.png')
-            # loginBtn = driver.find_element_by_xpath('/html/body')
-            #
-            # loginBtn = driver.find_element_by_xpath("//div[@id='page2']/div[@id='content']/div[@id='J_LoginBox']/div[@class='hd']/div[@class='login-switch']").click()
-            loginBtn = driver.find_element_by_xpath('//*[@id="J_Quick2Static"]').click()
+
+            driver.find_element_by_xpath('//*[@id="J_Quick2Static"]').click()
 
             time.sleep(2)
             # TODO:XDF:2
@@ -341,7 +329,8 @@ def tmallGivenIDAndShopName():
             loginBtn = driver.find_element_by_xpath('//*[@id="J_SubmitStatic"]')
             # TODO:XDF:4
             driver.save_screenshot('RecordProcess/process4.png')
-            loginBtn.send_keys(Keys.RETURN)
+            # loginBtn.send_keys(Keys.RETURN)
+            loginBtn.click()
             print ('login success')
             driver.save_screenshot('RecordProcess/process5.png')
 
@@ -419,7 +408,7 @@ def tmallGivenIDAndShopName():
                     break
                 else:
                     style = '-'
-            print (ID, shopName, datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), detailPrice, address, detailURL, title, mainPic, presellPrice, popularity, paymentBeginDate, paymentFinishDate, reserveCount)
+            print ID, shopName,categoryName, datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), detailPrice, address, detailURL, title, mainPic, presellPrice, popularity #, paymentBeginDate, paymentFinishDate, reserveCount
 
             product = {
                 'title': title,
