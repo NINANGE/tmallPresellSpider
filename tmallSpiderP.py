@@ -161,6 +161,7 @@ def tmallDataSEL():
                         except Exception as e:
                             print '显性未加载成功---%s'%e
                             driver.close()  # 关闭当前窗口
+                            break
 
                         time.sleep(5)  # 这里得让他睡眠一下，否则第二页开始会报错(加载数据)
                         driver.implicitly_wait(30)  # 隐性等待30秒，如果30之内页面加载完毕，往下执行，否则超时会报错，需要处理
