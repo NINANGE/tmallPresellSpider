@@ -156,13 +156,18 @@ def tmallDataSEL():
                             # loginBtn.send_keys(Keys.RETURN)
                             loginBtn.click()
                             print  ('login_success****')
-                        wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'tb-detail-hd')))  # 显性等待
+                        try:
+                            wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'tb-detail-hd')))  # 显性等待
+                        except Exception as e:
+                            print '显性未加载成功---%s'%e
+                            driver.close()  # 关闭当前窗口
+
                         time.sleep(5)  # 这里得让他睡眠一下，否则第二页开始会报错(加载数据)
                         driver.implicitly_wait(30)  # 隐性等待30秒，如果30之内页面加载完毕，往下执行，否则超时会报错，需要处理
                         try:
                             detailDoc = pq(driver.page_source)
                             driver.save_screenshot('RecordProcess/secPage.png')
-                            # TODO:XDF 这里需要注意一下，src图片链接可以不丰在https，需要自己手动拼接
+                            # TODO:XDF 这里需要注意一下，src图片链接可能不存在https，需要自己手动拼接
                             mainPics = detailDoc.find('#J_ImgBooth').attr('src')
                             if 'https:' in mainPics:
                                 mainPic = mainPics

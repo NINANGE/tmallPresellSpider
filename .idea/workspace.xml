@@ -5,6 +5,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ghostdriver.log" afterPath="$PROJECT_DIR$/ghostdriver.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmallSpiderP.py" afterPath="$PROJECT_DIR$/tmallSpiderP.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,25 +20,15 @@
       <file leaf-file-name="tmallSpiderP.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tmallSpiderP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="196" column="23" lean-forward="true" selection-start-line="196" selection-start-column="23" selection-end-line="196" selection-end-column="23" />
+            <state relative-caret-position="104">
+              <caret line="141" column="35" lean-forward="true" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="35" />
               <folding>
                 <element signature="e#24#54#0" expanded="true" />
-                <element signature="e#5375#6645#0" expanded="false" />
-                <element signature="e#9773#10046#0" expanded="false" />
-                <element signature="e#10219#10534#0" expanded="false" />
-                <element signature="e#10917#11972#0" expanded="false" />
+                <element signature="e#9958#10231#0" expanded="false" />
+                <element signature="e#10404#10719#0" expanded="false" />
+                <element signature="e#11102#12157#0" expanded="false" />
+                <element signature="e#13401#20968#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ghostdriver.log" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ghostdriver.log">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-860">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -46,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+              <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -95,14 +86,14 @@
         <option value="$PROJECT_DIR$/备份2.py" />
         <option value="$PROJECT_DIR$/ceShi备份3.py" />
         <option value="$PROJECT_DIR$/RecordProcess/.gitignore" />
-        <option value="$PROJECT_DIR$/tmallSpiderP.py" />
         <option value="$PROJECT_DIR$/ghostdriver.log" />
+        <option value="$PROJECT_DIR$/tmallSpiderP.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="180" />
+    <option name="x" value="999" />
     <option name="y" value="23" />
     <option name="width" value="1794" />
     <option name="height" value="1053" />
@@ -268,14 +259,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="180" y="23" width="1794" height="1053" extended-state="0" />
+    <frame x="999" y="23" width="1794" height="1053" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20833333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23829344" sideWeight="0.5022831" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882413" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26951092" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26951092" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23829344" sideWeight="0.4977169" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -327,10 +318,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#54#0" expanded="true" />
-            <element signature="e#5375#6645#0" expanded="false" />
-            <element signature="e#9773#10046#0" expanded="false" />
-            <element signature="e#10219#10534#0" expanded="false" />
-            <element signature="e#10917#11972#0" expanded="false" />
+            <element signature="e#9958#10231#0" expanded="false" />
+            <element signature="e#10404#10719#0" expanded="false" />
+            <element signature="e#11102#12157#0" expanded="false" />
+            <element signature="e#13401#20968#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -341,10 +332,10 @@
           <caret line="27" column="41" lean-forward="false" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
             <element signature="e#24#54#0" expanded="true" />
-            <element signature="e#5375#6645#0" expanded="false" />
-            <element signature="e#9773#10046#0" expanded="false" />
-            <element signature="e#10219#10534#0" expanded="false" />
-            <element signature="e#10917#11972#0" expanded="false" />
+            <element signature="e#9958#10231#0" expanded="false" />
+            <element signature="e#10404#10719#0" expanded="false" />
+            <element signature="e#11102#12157#0" expanded="false" />
+            <element signature="e#13401#20968#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -377,10 +368,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#54#0" expanded="true" />
-            <element signature="e#5375#6645#0" expanded="false" />
-            <element signature="e#9773#10046#0" expanded="false" />
-            <element signature="e#10219#10534#0" expanded="false" />
-            <element signature="e#10917#11972#0" expanded="false" />
+            <element signature="e#9958#10231#0" expanded="false" />
+            <element signature="e#10404#10719#0" expanded="false" />
+            <element signature="e#11102#12157#0" expanded="false" />
+            <element signature="e#13401#20968#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -413,10 +404,10 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#24#54#0" expanded="true" />
-            <element signature="e#5375#6645#0" expanded="false" />
-            <element signature="e#9773#10046#0" expanded="false" />
-            <element signature="e#10219#10534#0" expanded="false" />
-            <element signature="e#10917#11972#0" expanded="false" />
+            <element signature="e#9958#10231#0" expanded="false" />
+            <element signature="e#10404#10719#0" expanded="false" />
+            <element signature="e#11102#12157#0" expanded="false" />
+            <element signature="e#13401#20968#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -571,7 +562,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ghostdriver.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-860">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -579,14 +570,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tmallSpiderP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="196" column="23" lean-forward="true" selection-start-line="196" selection-start-column="23" selection-end-line="196" selection-end-column="23" />
+        <state relative-caret-position="104">
+          <caret line="141" column="35" lean-forward="true" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="35" />
           <folding>
             <element signature="e#24#54#0" expanded="true" />
-            <element signature="e#5375#6645#0" expanded="false" />
-            <element signature="e#9773#10046#0" expanded="false" />
-            <element signature="e#10219#10534#0" expanded="false" />
-            <element signature="e#10917#11972#0" expanded="false" />
+            <element signature="e#9958#10231#0" expanded="false" />
+            <element signature="e#10404#10719#0" expanded="false" />
+            <element signature="e#11102#12157#0" expanded="false" />
+            <element signature="e#13401#20968#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -594,7 +585,7 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
           <folding />
         </state>
       </provider>
