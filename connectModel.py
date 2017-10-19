@@ -144,10 +144,10 @@ def InsertOrUpdateBaseInfo(product,states):
 
     print '------------进入更新或者插入---------------'
     print type(product['title']),type(product['detailURL']),type(product['ShopID']),type(product['shopName']),type(product['JHSmodifyTime']),type(product['categoryName']),type(product['spuId']),type(product['EvaluationScores']),\
-            type(product['brandId']),type(product['brand']),type(EvaluationNewTime),type(product['ID']),type(product['StyleName']),type(product['ShopURL']),type(product['ItemName']),type(product['NCategory_Name']),\
+            type(product['brandId']),type(product['brand']),type(EvaluationNewTime),type(product['TreasureID']),type(product['StyleName']),type(product['ShopURL']),type(product['ItemName']),type(product['NCategory_Name']),\
             type(product['NStyleName']),type(product['NewstPrice']),type(product['mainPic']),type(product['URL_NO']),type(product['categoryId']),type(product['ItemName'])
 
-    TreasureID = product['ID']
+    TreasureID = product['TreasureID']
     ShopID = str(product['ShopID'])
     TreasureName = str(product['title'])
     ShopName = str(product['shopName'])
@@ -181,7 +181,7 @@ def InsertOrUpdateBaseInfo(product,states):
 
 #获取最新评论时间
 def getCommentBestNewTime(product):
-    commentURL = 'https://rate.tmall.com/list_detail_rate.htm?itemId='+str(product['ID'])+'&spuId='+str(product['spuId'])+'&sellerId='+str(product['sellerId'])+'&order=1&currentPage=1&append=0&content=1&posi=&picture=&needFold=0'
+    commentURL = 'https://rate.tmall.com/list_detail_rate.htm?itemId='+str(product['Trea'])+'&spuId='+str(product['spuId'])+'&sellerId='+str(product['sellerId'])+'&order=1&currentPage=1&append=0&content=1&posi=&picture=&needFold=0'
     # commentURL = 'https://rate.tmall.com/list_detail_rate.htm?itemId=17731025119&spuId=216642496&sellerId=911093189&order=1&currentPage=1&append=0&content=1&posi=&picture=&needFold=0'
     commentResult = getCommentResults(commentURL)
     # print commentResult
@@ -263,8 +263,8 @@ def settingNameCode(itemName):
 def judgeHaveTreasureID(product):
     try:
         for data in BaseInfo:
-            if product['ID'] == str(data):
-                print 'TreasureID 存在---%s---%s'%(product['ID'],str(data[3]))
+            if product['TreasureID'] == str(data):
+                print 'TreasureID 存在---%s---%s'%(product['TreasureID'],str(data[3]))
                 return True
         return False
 
