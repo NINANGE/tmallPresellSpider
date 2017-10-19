@@ -134,9 +134,10 @@ def InsertOrUpdateBaseInfo(product,states):
     conn = Mssql()
 
     print '进入更新或者插入---%s'
-    if getCommentBestNewTime(product):
-        commentNewTime = getCommentBestNewTime(product)
-        EvaluationNewTime = strToDateTime(str(getCommentBestNewTime(product)), 'sixLineTypes')
+    rateData = getCommentBestNewTime(product)
+    if rateData:
+        # commentNewTime = getCommentBestNewTime(product)
+        EvaluationNewTime = strToDateTime(str(rateData), 'sixLineTypes')
     else:
         EvaluationNewTime = ''
     currentTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -181,7 +182,7 @@ def InsertOrUpdateBaseInfo(product,states):
 
 #获取最新评论时间
 def getCommentBestNewTime(product):
-    commentURL = 'https://rate.tmall.com/list_detail_rate.htm?itemId='+str(product['Trea'])+'&spuId='+str(product['spuId'])+'&sellerId='+str(product['sellerId'])+'&order=1&currentPage=1&append=0&content=1&posi=&picture=&needFold=0'
+    commentURL = 'https://rate.tmall.com/list_detail_rate.htm?itemId='+str(product['TreasureID'])+'&spuId='+str(product['spuId'])+'&sellerId='+str(product['sellerId'])+'&order=1&currentPage=1&append=0&content=1&posi=&picture=&needFold=0'
     # commentURL = 'https://rate.tmall.com/list_detail_rate.htm?itemId=17731025119&spuId=216642496&sellerId=911093189&order=1&currentPage=1&append=0&content=1&posi=&picture=&needFold=0'
     commentResult = getCommentResults(commentURL)
     # print commentResult
