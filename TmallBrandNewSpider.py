@@ -291,6 +291,7 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
                 'ShopURL': ShopURL,
                 'sellerId': sellerId,
                 'productState': '1',
+                'JHSmodifyTime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 'StartTime':StartTime,
                 'EndTime':EndTime,
                 'detailURL':detailURL
