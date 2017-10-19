@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8555e2eb-1ee7-4411-9fb3-3e2c2f8a85b0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/connectModel.py" afterPath="$PROJECT_DIR$/connectModel.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TmallBrandNewSpider.py" afterPath="$PROJECT_DIR$/TmallBrandNewSpider.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TmallBrandNewSpider.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TmallBrandNewSpider.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TmallBrandNewSpider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="87">
-              <caret line="258" column="27" lean-forward="false" selection-start-line="258" selection-start-column="17" selection-end-line="258" selection-end-column="27" />
+            <state relative-caret-position="-1511">
+              <caret line="154" column="38" lean-forward="false" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
               <folding>
                 <element signature="e#24#54#0" expanded="true" />
                 <element signature="e#12992#13239#0" expanded="false" />
@@ -114,11 +114,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connectModel.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="connectModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/connectModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+            <state relative-caret-position="291">
+              <caret line="120" column="174" lean-forward="false" selection-start-line="120" selection-start-column="174" selection-end-line="120" selection-end-column="174" />
               <folding>
                 <element signature="e#24#41#0" expanded="true" />
                 <element signature="e#330#3340#0" expanded="false" />
@@ -199,15 +199,15 @@
         <option value="$PROJECT_DIR$/TaoBaoCommentData.py" />
         <option value="$PROJECT_DIR$/tmallSpiderP.py" />
         <option value="$PROJECT_DIR$/common.py" />
-        <option value="$PROJECT_DIR$/TmallBrandNewSpider.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/dbChoiceType.csv" />
         <option value="$PROJECT_DIR$/connectModel.py" />
+        <option value="$PROJECT_DIR$/TmallBrandNewSpider.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="147" />
+    <option name="x" value="354" />
     <option name="y" value="23" />
     <option name="width" value="1865" />
     <option name="height" value="1057" />
@@ -477,7 +477,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="147" y="23" width="1865" height="1057" extended-state="0" />
+    <frame x="354" y="23" width="1865" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16182117" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -740,17 +740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TmallBrandNewSpider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="258" column="27" lean-forward="false" selection-start-line="258" selection-start-column="17" selection-end-line="258" selection-end-column="27" />
-          <folding>
-            <element signature="e#24#54#0" expanded="true" />
-            <element signature="e#12992#13239#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dbChoiceType.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -761,8 +750,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/connectModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        <state relative-caret-position="291">
+          <caret line="120" column="174" lean-forward="false" selection-start-line="120" selection-start-column="174" selection-end-line="120" selection-end-column="174" />
           <folding>
             <element signature="e#24#41#0" expanded="true" />
             <element signature="e#330#3340#0" expanded="false" />
@@ -773,6 +762,17 @@
             <element signature="e#12912#13681#0" expanded="false" />
             <element signature="e#13804#15804#0" expanded="false" />
             <element signature="e#15836#16002#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TmallBrandNewSpider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1511">
+          <caret line="154" column="38" lean-forward="false" selection-start-line="154" selection-start-column="38" selection-end-line="154" selection-end-column="38" />
+          <folding>
+            <element signature="e#24#54#0" expanded="true" />
+            <element signature="e#12992#13239#0" expanded="false" />
           </folding>
         </state>
       </provider>

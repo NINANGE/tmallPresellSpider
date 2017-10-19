@@ -152,7 +152,7 @@ def tmallBrandNews():
 def getDetailFilterData(driver,wait,resultData,ShopName):
     for TreasureID in resultData:
         print '------你大爷------'
-        time.sleep(random.uniform(2, 5))
+        time.sleep(random.uniform(4, 7))
         try:
             driver.get('https://detail.tmall.com/item.htm?id='+str(TreasureID))
             time.sleep(random.randint(1, 3))
