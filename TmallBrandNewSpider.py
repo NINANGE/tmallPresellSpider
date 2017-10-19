@@ -182,6 +182,7 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
                 print '-------不是预售，不需要保存--------'
                 time.sleep(random.uniform(2,4))
                 continue
+            detailURL = 'https://detail.tmall.com/item.htm?id='+str(TreasureID)
 
             # TODO:XDF 这里需要注意一下，src图片链接可以不丰在https，需要自己手动拼接
             mainPics = doc.find('#J_ImgBooth').attr('src')
@@ -240,6 +241,8 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
             except Exception as e:
                 print e
 
+
+
             print str(TreasureID),shopName, categoryName, datetime.datetime.now().strftime(
                 '%Y-%m-%d %H:%M:%S'), detailPrice, address, title, mainPic, presellPrice, popularity  # , paymentBeginDate, paymentFinishDate, reserveCount
 
@@ -289,7 +292,8 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
                 'sellerId': sellerId,
                 'productState': '1',
                 'StartTime':StartTime,
-                'EndTime':EndTime
+                'EndTime':EndTime,
+                'detailURL':detailURL
             }
 
             if str(dbChoice['TmallYuShouEnemyShopSql'][0]) == 'Mongodb': #保存到mongodb

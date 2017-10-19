@@ -164,7 +164,7 @@ def InsertOrUpdateBaseInfo(product,states):
                    "Category_Name,IsDel,GrpName,spuId,EvaluationScores,Successful_Trading,ShopURL,TreasureHref,TreasureFileURL,IsAuto,Url_No,CategoryId,brandId,brand,rootCatId,StyleName,EffectiveTime," \
                    "ReservationStatus,ReNewPreSaleTime,JHSReNewTime,CollectionNum,JHSModifyTime,ItemName,EvaluationTime,SkuModifyDate,TempleteTime,NCategory_Name,NStyleName,NewestPrice)" \
                    " values ('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s'," \
-                   "'%s','%s','%s','%d', '%s', '%s', '%s', '%s','%s','%s','%s','%s')"%(' ',TreasureID,TreasureName,product['detailURL'],ShopID,ShopName,
+                   "'%s','%s','%s','%d', '%s', '%s', '%s', '%s','%s','%s','%s','%s')"%(' ',TreasureID,TreasureName,str(product['detailURL']),ShopID,ShopName,
                     1,1,0,'1',modifyTime,modifyTime,'0',product['categoryName'],'0',' ',spuId,product['EvaluationScores'],0,product['ShopURL'],product['mainPic'],product['mainPic'],'1',product['URL_NO'],
                     product['categoryId'],product['brandId'],product['brand'],product['rootCatId'],StyleName,modifyTime,product['ReservationStatus'],modifyTime,
                     modifyTime,product['CollectionNum'],modifyTime,product['ItemName'],EvaluationNewTime,modifyTime,modifyTime,product['NCategory_Name'],product['NStyleName'],product['presellPrice']
@@ -174,7 +174,7 @@ def InsertOrUpdateBaseInfo(product,states):
         print '即将开始-------更新'
         sql_text = "UPDATE T_Treasures_BaseInfo SET TreasureName='%s',TreasureLink='%s',ShopID='%s',ShopName='%s',ModifyDate='%s',Category_Name='%s',spuId='%s',EvaluationScores='%f',brandId='%s',brand='%s'," \
                    "EvaluationTime='%s' NewsPrice='%s' WHERE TreasureID='%s'"%(
-                                                    TreasureName,product['detailURL'],ShopID,ShopName,modifyTime,product['categoryName'],spuId,product['EvaluationScores'],brandId,brand,
+                                                    TreasureName,str(product['detailURL']),ShopID,ShopName,modifyTime,product['categoryName'],spuId,product['EvaluationScores'],brandId,brand,
                                                     EvaluationNewTime,product['presellPrice'],TreasureID
                                        )
     print 'sql---%s'%sql_text
