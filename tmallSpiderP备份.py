@@ -22,7 +22,7 @@ import json
 import random
 from connectModel import Mssql,InsertPreSaleNew,InsertShopTemplete,InsertOrUpdateBaseInfo,judgeHaveTreasureID
 from common import tmallLogin,tmallCode,categoryNamesQly,styleNames,brandName,evaluationScoreURL,saveTmallGivenIDTB,ownShopID,allShopName,save_img,clearToReplaceData,df,\
-    saveTmallGivenIDToYuShouTB,WhetherYuShou,judgeProduct,JudgeLoginSuccess,dbChoice
+    saveTmallGivenIDToYuShouTB,WhetherYuShou,judgeProduct,JudgeLoginSuccess
 import os
 
 
@@ -48,8 +48,7 @@ def tmallDataSEL():
     # 更换头部
     options.add_argument(
         'user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
-    # driver = webdriver.Chrome(chrome_options=options,executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
-    driver = webdriver.Chrome(executable_path=r'/Users/zhuoqin/Downloads/123456/chromedriver')  # chrome_options=options,
+    driver = webdriver.Chrome(chrome_options=options,executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
     wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
 
 
@@ -378,9 +377,8 @@ def tmallGivenIDAndShopName():
     # 更换头部
     options.add_argument(
         'user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
-    # driver = webdriver.Chrome(chrome_options=options,
-    #                           executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
-    driver = webdriver.Chrome(executable_path=r'/Users/zhuoqin/Downloads/123456/chromedriver')  # chrome_options=options,
+    driver = webdriver.Chrome(chrome_options=options,
+                              executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
     wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
 
     # TODO:XDF PhantomJS无头浏览器
@@ -407,7 +405,7 @@ def tmallGivenIDAndShopName():
     while True:
 
         for k in range(0,len(ownShopID)):
-            time.sleep(random.uniform(3, 5))
+
             driver.get('https://detail.tmall.com/item.htm?id=%s' % str(ownShopID['shopID'][k]))
             print ('https://detail.tmall.com/item.htm?id=%s' % str(ownShopID['shopID'][k]))
             ID = str(ownShopID['shopID'][k])
@@ -419,7 +417,7 @@ def tmallGivenIDAndShopName():
             if judgeProduct(driver) == True:
                 print '商品不存在'
                 continue
-            tmallCode(driver, wait,EC)
+            tmallCode(driver, wait)
 
             try:
                 wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'tb-detail-hd')))  # 显性等待
@@ -490,7 +488,9 @@ def tmallGivenIDAndShopName():
                 title = datas['itemDO']['title']
                 sellerId = datas['rateConfig']['sellerId']
                 shopID = sellerId
+
                 shopName = doc.find('.slogo-shopname').text()
+
                 categoryName = categoryNamesQly(ID)
 
                 # print '类型---%s'%categoryId
@@ -558,19 +558,17 @@ def tmallGivenIDAndShopName():
                     'sellerId':sellerId
                 }
 
-                if str(dbChoice['tmallYuShouSql'][0]) == 'Mongodb':
+                saveTmallGivenIDToYuShouTB(product)
 
-                    saveTmallGivenIDToYuShouTB(product)
-                else:
-                    if judgeHaveTreasureID(product) == True:
-                        print '存在------'
-                        InsertOrUpdateBaseInfo(product,'Update')
-                        print '更新成功------'
-                    else:
-                        print '不存在吧------'
-                        InsertOrUpdateBaseInfo(product, 'Insert')
-                        print '存入成功------'
-                    # InsertPreSaleNew(product)
+                    # if judgeHaveTreasureID(product) == True:
+                    #     print '存在------'
+                    #     InsertOrUpdateBaseInfo(product,'Update')
+                    #     print '更新成功------'
+                    # else:
+                    #     print '不存在吧------'
+                    #     InsertOrUpdateBaseInfo(product, 'Insert')
+                    #     print '存入成功------'
+                    # # InsertPreSaleNew(product)
 
             except Exception as e:
                 print ('error---%s'%e)

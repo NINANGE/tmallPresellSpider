@@ -9,3 +9,7 @@ chromedriver
 phantomjs
 .idea/
 *.log
+allShopName.xlsx
+dbChoiceType.csv
+EnemySpider备份.py
+tmallSpiderP备份.py
