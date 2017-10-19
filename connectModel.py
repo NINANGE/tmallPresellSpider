@@ -13,8 +13,8 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 allData = []
-BaseInfo = []
 
+InsertList = []
 class Mssql:
     def __init__(self):
         self.host = '192.168.1.253:1433'
@@ -69,6 +69,7 @@ class Mssql:
 
         self.conn.commit()
         self.conn.close()
+        print '插入成功'
 
     def exec_many_query(self, sql, param):
         """
@@ -118,13 +119,13 @@ def InsertPreSaleNew(product):
     modifyTime = strToDateTime(product['modifyTime'], 'sixLineTypes')
     # TODO:XDF 这里要注意，不要把 , 号写成中文符号(这里坑了我好久)，否则会报错：‘pymssql.ProgrammingError: (102, "Incorrect syntax near '\xef\xbc\x8c'.DB-Lib error message 20018, severity 15:\nGeneral SQL Server error: Check messages from the SQL Server\n")’
     # sql_text = "insert into T_Treasures_PreSaleNew values ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%d', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%d', '%d','%d')" % \
-    #                    (uuid.uuid1(), str(uuid.uuid1()), product['ID'], product['detailURL'], strToDateTime(product['StartTime'],'fiveColonTypes'), strToDateTime(product['EndTime'],'fiveColonTypes'),
+    #                    (uuid.uuid1(), str(uuid.uuid1()), product['ID'], product['detailURL'], product['StartTime'], product['EndTime'],
     #                     strToDateTime(product['paymentBeginDate'], 'fiveColonTypes'),strToDateTime(product['paymentFinishDate'], 'fiveColonTypes'),product['title'],product['mainPic'],'0',product['shopName'],
-    #                     product['categoryName'],product['style'],0,modifyTime,0,'0','0',0,'0.00','0.00','0','0',0,0,0)
+    #                     product['categoryName'],product['style'],product['CollectionNum'],modifyTime,0,'0','0',0,'0.00','0.00','0','0',0,0,0)
 
 
-    sql_text = "insert into T_Treasures_PreSale values ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(uuid.uuid1(),  product['TreasureID'], product['StartTime'], product['EndTime'],
-                        strToDateTime(product['paymentBeginDate'], 'fiveColonTypes'),strToDateTime(product['paymentFinishDate'], 'fiveColonTypes'),'','','',product['URL_NO'],product['mainPic'],'0',modifyTime,0,0)
+    sql_text = "insert into T_Treasures_PreSale values ('%s','%s','%s','%s','%s','%s','%d','%.2f','%.2f','%d','%s','%s','%s','%d','%d')"%(uuid.uuid1(),  product['TreasureID'], product['StartTime'], product['EndTime'],
+                        strToDateTime(product['paymentBeginDate'], 'fiveColonTypes'),strToDateTime(product['paymentFinishDate'], 'fiveColonTypes'),0,0.0,0.0,product['CollectionNum'],product['URL_NO'],modifyTime,modifyTime,0,0)
 
     conn.exec_non_query(sql_text)
     print '*******预售宝贝表插入成功********'
@@ -141,12 +142,12 @@ def InsertOrUpdateBaseInfo(product,states):
     else:
         EvaluationNewTime = ''
     currentTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    modifyTime = strToDateTime(currentTime,'sixLineTypes')
+    # modifyTime = strToDateTime(currentTime,'sixLineTypes')
 
-    print '------------进入更新或者插入---------------'
+    print '------------进入更新或者插入---------------',product['StartTime'],type(product['StartTime'])
     print type(product['title']),type(product['detailURL']),type(product['ShopID']),type(product['shopName']),type(product['JHSmodifyTime']),type(product['categoryName']),type(product['spuId']),type(product['EvaluationScores']),\
             type(product['brandId']),type(product['brand']),type(EvaluationNewTime),type(product['TreasureID']),type(product['StyleName']),type(product['ShopURL']),type(product['ItemName']),type(product['NCategory_Name']),\
-            type(product['NStyleName']),type(product['NewstPrice']),type(product['mainPic']),type(product['URL_NO']),type(product['categoryId']),type(product['ItemName'])
+            type(product['NStyleName']),type(product['mainPic']),type(product['URL_NO']),type(product['categoryId']),type(product['ItemName'])
 
     TreasureID = product['TreasureID']
     ShopID = str(product['ShopID'])
@@ -160,21 +161,32 @@ def InsertOrUpdateBaseInfo(product,states):
 
     if states == 'Insert':
         print '即将开始------插入'
+
         sql_text = "insert into T_Treasures_BaseInfo (BatchNo,TreasureID,TreasureName,TreasureLink,ShopID,ShopName,Shop_Platform,Treasure_Status,Monthly_Volume,Is_Search,InsertDate,ModifyDate,IsMerge," \
                    "Category_Name,IsDel,GrpName,spuId,EvaluationScores,Successful_Trading,ShopURL,TreasureHref,TreasureFileURL,IsAuto,Url_No,CategoryId,brandId,brand,rootCatId,StyleName,EffectiveTime," \
                    "ReservationStatus,ReNewPreSaleTime,JHSReNewTime,CollectionNum,JHSModifyTime,ItemName,EvaluationTime,SkuModifyDate,TempleteTime,NCategory_Name,NStyleName,NewestPrice)" \
-                   " values ('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%s', '%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s'," \
-                   "'%s','%s','%s','%d', '%s', '%s', '%s', '%s','%s','%s','%s','%s')"%(' ',TreasureID,TreasureName,str(product['detailURL']),ShopID,ShopName,
-                    1,1,0,'1',modifyTime,modifyTime,'0',product['categoryName'],'0',' ',spuId,product['EvaluationScores'],0,product['ShopURL'],product['mainPic'],product['mainPic'],'1',product['URL_NO'],
-                    product['categoryId'],product['brandId'],product['brand'],product['rootCatId'],StyleName,modifyTime,product['ReservationStatus'],modifyTime,
-                    modifyTime,product['CollectionNum'],modifyTime,product['ItemName'],EvaluationNewTime,modifyTime,modifyTime,product['NCategory_Name'],product['NStyleName'],product['presellPrice']
+                   " values ('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%f', '%d', '%s', '%s', '%s', '%s', '%s','%d','%s','%s','%s','%s','%s'," \
+                   "'%s','%s','%s','%d', '%s', '%s', '%s', '%s','%s','%s','%s','%.2f')"%(' ',TreasureID,TreasureName,str(product['detailURL']),ShopID,ShopName,
+                    1,1,0,'1',strToDateTime(currentTime,'sixLineTypes'),strToDateTime(currentTime,'sixLineTypes'),'0',product['categoryName'],'0',' ',spuId,product['EvaluationScores'],0,product['ShopURL'],product['mainPic'],product['mainPic'],'1',product['URL_NO'],
+                    product['categoryId'],product['brandId'],product['brand'],product['rootCatId'],StyleName,strToDateTime(currentTime,'sixLineTypes'),product['ReservationStatus'],strToDateTime(currentTime,'sixLineTypes'),
+                                                                                       strToDateTime(currentTime,'sixLineTypes'),product['CollectionNum'],strToDateTime(currentTime,'sixLineTypes'),
+                                                                                       product['ItemName'],EvaluationNewTime,strToDateTime(currentTime,'sixLineTypes'),strToDateTime(currentTime,'sixLineTypes'),product['NCategory_Name'],product['NStyleName'],
+                                                                                       product['presellPrice']
                     )
+
+        # sql_text = "insert into T_Treasures_BaseInfo (BatchNo,TreasureID,TreasureName,TreasureLink,ShopID,ShopName,Shop_Platform,Treasure_Status,Monthly_Volume,Is_Search,InsertDate,ModifyDate,IsMerge," \
+        #            "Category_Name,IsDel,GrpName,spuId,EvaluationScores,Successful_Trading,ShopURL,TreasureHref,TreasureFileURL,IsAuto,Url_No,CategoryId,brandId,brand,rootCatId,StyleName,EffectiveTime," \
+        #            "ReservationStatus,ReNewPreSaleTime,JHSReNewTime,CollectionNum,JHSModifyTime,ItemName,EvaluationTime,SkuModifyDate,TempleteTime,NCategory_Name,NStyleName,NewestPrice)" \
+        #            " values"+str(InsertSqlList).replace('[', '').replace(']', '')
+
+
+
 
     else:
         print '即将开始-------更新'
         sql_text = "UPDATE T_Treasures_BaseInfo SET TreasureName='%s',TreasureLink='%s',ShopID='%s',ShopName='%s',ModifyDate='%s',Category_Name='%s',spuId='%s',EvaluationScores='%f',brandId='%s',brand='%s'," \
-                   "EvaluationTime='%s' NewsPrice='%s' WHERE TreasureID='%s'"%(
-                                                    TreasureName,str(product['detailURL']),ShopID,ShopName,modifyTime,product['categoryName'],spuId,product['EvaluationScores'],brandId,brand,
+                   "EvaluationTime='%s',NewestPrice='%.2f' WHERE TreasureID='%s'"%(
+                                                    TreasureName,str(product['detailURL']),ShopID,ShopName,strToDateTime(currentTime,'sixLineTypes'),product['categoryName'],spuId,product['EvaluationScores'],brandId,brand,
                                                     EvaluationNewTime,product['presellPrice'],TreasureID
                                        )
     print 'sql---%s'%sql_text
@@ -261,11 +273,12 @@ def settingNameCode(itemName):
     return Name
 
 
-def judgeHaveTreasureID(product):
+def judgeHaveTreasureID(product,BaseInfo):
+
     try:
         for data in BaseInfo:
-            if product['TreasureID'] == str(data):
-                print 'TreasureID 存在---%s---%s'%(product['TreasureID'],str(data[3]))
+            if str(product['TreasureID']) == str(data):
+                print 'TreasureID 存在---%s---%s'%(str(product['TreasureID']),str(data[3]))
                 return True
         return False
 
@@ -395,6 +408,7 @@ def ExistenceShopName(shopName):
     return False
 
 def SelectT_Treasures_BaseInfo():
+    BaseInfo = []
     conn = Mssql()
     sql_text = 'SELECT * FROM T_Treasures_BaseInfo'
     results = conn.exec_query(sql_text)
@@ -414,7 +428,16 @@ def InsertShopTempletes(shopName,URL_NO):
 
 
 if __name__ == '__main__':
-    # tims = time.localtime()
+    tims = time.localtime()
+
+
+    # applist = [('dddd','fffff','ffffasdfasf','asdfasdfadsfsf'),('dddd','fffff','ffffasdfasf','asdfasdfadsfsf'),('dddd','fffff','ffffasdfasf','asdfasdfadsfsf'),('dddd','fffff','ffffasdfasf','asdfasdfadsfsf')]
+    #
+    # print str(applist).replace('[','').replace(']','')
+    #
+    # print SelectT_Treasures_BaseInfo()
+
+
 
     # print selectAllProductID()
     # result = selectAllProductID()
@@ -451,17 +474,18 @@ if __name__ == '__main__':
     #
     # # ceShiDemo()
     #
-    strs = '2017.09.09 01:00'
-    print datetime.datetime.strptime(strs, '%Y.%m.%d %H:%M')
-    s = '2017--26 00:00:00'
-    if now() > s:
-        print '过期'
-    else:
-        print '没过期'
-
-
-
-
+    # strs = '2017.09.09 01:00'
+    # print datetime.datetime.strptime(strs, '%Y.%m.%d %H:%M')
+    # s = '2017--26 00:00:00'
+    # if now() > s:
+    #     print '过期'
+    # else:
+    #     print '没过期'
+    #
+    #
+    # currentTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    # modifyTime = strToDateTime(currentTime,'sixLineTypes')
+    # print modifyTime,type(modifyTime)
 
 
 

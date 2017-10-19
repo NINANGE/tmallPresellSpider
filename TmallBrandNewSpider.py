@@ -24,7 +24,7 @@ import json
 from multiprocessing import Pool
 from multiprocessing.dummy import Pool as TheaderPool
 import random
-from connectModel import Mssql,InsertPreSaleNew,InsertOrUpdateBaseInfo,judgeHaveTreasureID,InsertShopTempletes,ExistenceShopName,SelectShopTempletes,now
+from connectModel import Mssql,InsertPreSaleNew,InsertOrUpdateBaseInfo,judgeHaveTreasureID,InsertShopTempletes,ExistenceShopName,SelectShopTempletes,now,strToDateTime,getCommentBestNewTime,SelectT_Treasures_BaseInfo
 from  common import styleNames,categoryNamesQly,brandName,evaluationScoreURL,clearToReplaceData,tmallYuShouTable,tmallCode,JudgeLoginSuccess,tmallLogin,WhetherYuShou,saveTmallYuShouToMongodb,\
 getProductData,saveYuShouOrRemove,judgeProduct,dbChoice,allShopName
 import os
@@ -38,6 +38,8 @@ sys.setdefaultencoding('utf-8')
 
 
 allShopTreasureID = []
+
+InsertSqlList = []
 
 #TODO:EXP 全新天猫预售  首页点击到第二页情况
 def tmallBrandNews():
@@ -83,7 +85,7 @@ def tmallBrandNews():
 
     try:
         print '进来窗口了'
-        # driver.maximize_window()
+        driver.maximize_window()
         driver.get("https://list.tmall.com/search_product.htm?q=123&type=p")
 
         print '窗口最大化----'
@@ -98,8 +100,9 @@ def tmallBrandNews():
         print '即将登录'
         tmallLogin(driver,UnexpectedAlertPresentException,ActionChains)
     SelectShopTempletes()
+    BaseInfoList = SelectT_Treasures_BaseInfo()
     for i in range(0,len(allShopName)):
-
+        InsertSqlList = []
         print('进来了---%s' % i)
         driver.find_element_by_xpath('//*[@id="mq"]').clear()
         time.sleep(random.uniform(2,4))
@@ -116,7 +119,7 @@ def tmallBrandNews():
         wait.until(EC.presence_of_element_located((By.ID, 'J_ItemList')))
         time.sleep(random.uniform(2, 4))
         print '赶紧睡吧'
-        JudgeLoginSuccess(driver,UnexpectedAlertPresentException,ActionChains)
+        # JudgeLoginSuccess(driver,UnexpectedAlertPresentException,ActionChains)
 
         time.sleep(random.randint(1, 3))
 
@@ -139,20 +142,26 @@ def tmallBrandNews():
             doc = pq(html)
             list = doc('#J_ItemList .product   .product-iWrap').items()
 
-            resultData = search(list, urls)
+            resultData = search(list)
+            lists = doc('#J_ItemList .product   .product-iWrap').items()
+            YuShouPriceData = YuShouPrice(lists)
+
             time.sleep(random.uniform(3, 5))
 
             print '所有店铺ID----%s-----%s'%(len(resultData),resultData)
-            getDetailFilterData(driver,wait,resultData,allShopName['shopName'][i])
+            print '所有预售价---%s'%YuShouPriceData
+            getDetailFilterData(driver,wait,resultData,YuShouPriceData,allShopName['shopName'][i],InsertSqlList,BaseInfoList)
 
 
     # tmallYuShouTable.close()  # 这里需要手动关闭游标
 
 #这是获取产品
-def getDetailFilterData(driver,wait,resultData,ShopName):
-    for TreasureID in resultData:
+def getDetailFilterData(driver,wait,resultData,YuShouPriceData,ShopName,InsertSqlList,BaseInfoList):
+    for i in range(0,len(resultData)):
+        TreasureID = str(resultData[i])
+        presellPrice = clearToReplaceData(str(YuShouPriceData[i]), 1)
         print '------你大爷------'
-        time.sleep(random.uniform(4, 7))
+        time.sleep(random.uniform(5, 8))
         try:
             driver.get('https://detail.tmall.com/item.htm?id='+str(TreasureID))
             time.sleep(random.randint(1, 3))
@@ -194,7 +203,7 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
             popularity = clearToReplaceData(doc.find('#J_CollectCount').text(),0)
 
             # TODO:XDF 这里要注意，源码中可能存在xmlns，用pq是爬取不到的，要用lxml的tree抓取（非常坑爹）
-            presellPrice = clearToReplaceData(doc.find('#J_PromoBox').text(), 1)
+            # presellPrice = clearToReplaceData(doc.find('#J_PromoBox').text(), 1)
             address = doc.find('#J_deliveryAdd').text()
             paymentDate = doc.find('.J_step2Time').text().split('~')
             paymentBeginDate = paymentDate[0]
@@ -244,7 +253,7 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
 
 
             print str(TreasureID),shopName, categoryName, datetime.datetime.now().strftime(
-                '%Y-%m-%d %H:%M:%S'), detailPrice, address, title, mainPic, presellPrice, popularity  # , paymentBeginDate, paymentFinishDate, reserveCount
+                '%Y-%m-%d %H:%M:%S'), detailPrice, address, title, mainPic,presellPrice, popularity  # , paymentBeginDate, paymentFinishDate, reserveCount
 
             StartTime = datetime.datetime.strptime(str(allShopName['YuShouStartTime'][0]), '%Y-%m-%d %H:%M:%S')
 
@@ -268,7 +277,7 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
                 'reserveCount': reserveCount,
                 'paymentBeginDate': paymentBeginDate,
                 'paymentFinishDate': paymentFinishDate,
-                'presellPrice': presellPrice,
+                'presellPrice': float(presellPrice),
                 'categoryId': int(categoryId),
                 'categoryName': categoryName,
                 'spiderTime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
@@ -280,11 +289,11 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
                 'StyleName': StyleName,
                 'EffectiveTime': '',
                 'ReservationStatus': 0,
-                'CollectionNum': 0,
+                'CollectionNum': int(popularity),
                 'ItemName': '',
                 'NCategory_Name': '',
                 'Is_Search': 1,
-                'NStyleName': '',
+                'NStyleName': ' ',
                 'NewstPrice': 0,
                 'EvaluationScores': float(EvaluationScores),
                 'URL_NO': URL_NO,
@@ -292,20 +301,39 @@ def getDetailFilterData(driver,wait,resultData,ShopName):
                 'sellerId': sellerId,
                 'productState': '1',
                 'JHSmodifyTime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'modifyTime': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                 'StartTime':StartTime,
                 'EndTime':EndTime,
                 'detailURL':detailURL
             }
-
+            currentTime = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            rateData = getCommentBestNewTime(product)
+            if rateData:
+                # commentNewTime = getCommentBestNewTime(product)
+                EvaluationNewTime = strToDateTime(str(rateData), 'sixLineTypes')
+            else:
+                EvaluationNewTime = ''
             if str(dbChoice['TmallYuShouEnemyShopSql'][0]) == 'Mongodb': #保存到mongodb
                 saveYuShouOrRemove(product, str(TreasureID))
             else:
                 print '保存到sqlserver数据库...'
 
-                if judgeHaveTreasureID(product) == True:
+                if judgeHaveTreasureID(product,BaseInfoList) == True:
                     InsertOrUpdateBaseInfo(product, 'Update')
+
                 else:
+                    # InsertSqlList.append((' ',product['TreasureID'],str(product['title']),str(product['detailURL']),str(product['ShopID']),ShopName,
+                    # 1,1,0,'1',strToDateTime(currentTime,'sixLineTypes'),strToDateTime(currentTime,'sixLineTypes'),'0',product['categoryName'],'0',' ',spuId,product['EvaluationScores'],0,product['ShopURL'],product['mainPic'],product['mainPic'],'1',product['URL_NO'],
+                    # product['categoryId'],product['brandId'],product['brand'],product['rootCatId'],StyleName,strToDateTime(currentTime,'sixLineTypes'),product['ReservationStatus'],strToDateTime(currentTime,'sixLineTypes'),
+                    #                                                                    strToDateTime(currentTime,'sixLineTypes'),product['CollectionNum'],strToDateTime(currentTime,'sixLineTypes'),
+                    #                                                                    product['ItemName'],EvaluationNewTime,strToDateTime(currentTime,'sixLineTypes'),strToDateTime(currentTime,'sixLineTypes'),product['NCategory_Name'],product['NStyleName'],
+                    #                       product['presellPrice']))
+                    # if  len(InsertSqlList)==20:
                     InsertOrUpdateBaseInfo(product, 'Insert')
+                        # InsertSqlList=[]
+
+                    # print '测试+++%s'%InsertSqlList
+
                 InsertPreSaleNew(product)
 
         except Exception as e:
@@ -327,17 +355,23 @@ def getProjectPage(doc):
     return page
 
 
-def search(list, url):
-    print '***789*********%s' % url
+def search(list):
     allShopTreasureID = []
     for item in list:
 
         TreasureID = item.find('.productStatus').eq(0).children().eq(-1).attr('data-item')
 
+        # prices = {TreasureID}
         allShopTreasureID.append(TreasureID)
     return allShopTreasureID
 
-
+def YuShouPrice(list):
+    YuShouPriceList = []
+    for item in list:
+        YuShouPrice = item.find('.productPrice').text().replace(' ', '').replace('¥', '').replace('\n', '')
+        YuShouPriceList.append(YuShouPrice)
+        # print '预售---%s'%YuShouPrice
+    return YuShouPriceList
 
 if __name__ == '__main__':
 
@@ -365,6 +399,16 @@ if __name__ == '__main__':
     #         print '存在'
     #         break
 
+    # TreasureID = 12345645
+    # DDD = '45444'
+    #
+    # TreasureID1 = 123456451111
+    # DDD1 = '4544411111'
+    # pricesList = []
+    # pricesList.append()
+    # prices = {TreasureID:DDD}
+    # print prices[TreasureID]
+
     # ceShiProduct()
     # pool = TheaderPool(processes=4)
     # pool.map_async(tmallBrandNews(),range())
@@ -388,8 +432,9 @@ if __name__ == '__main__':
     # r = requests.post(url, data=s,headers=headers)
     # print r.text
 
-
-
+    # YuShouPric = ['111','144555555','44444']
+    # for data in range(0,len(YuShouPric)):
+    #     print YuShouPric[data]
 
 
 
