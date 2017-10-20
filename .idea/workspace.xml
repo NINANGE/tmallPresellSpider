@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8555e2eb-1ee7-4411-9fb3-3e2c2f8a85b0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TmallYuShouPriceSpider.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TmallBrandNewSpider.py" afterPath="$PROJECT_DIR$/TmallBrandNewSpider.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common.py" afterPath="$PROJECT_DIR$/common.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/connectModel.py" afterPath="$PROJECT_DIR$/connectModel.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ghostdriver.log" afterPath="$PROJECT_DIR$/ghostdriver.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmallSpiderP.py" afterPath="$PROJECT_DIR$/tmallSpiderP.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,16 +14,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="tmallSpiderP.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tmallSpiderP.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tmallSpiderP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="240" column="54" lean-forward="true" selection-start-line="240" selection-start-column="54" selection-end-line="240" selection-end-column="54" />
+            <state relative-caret-position="509">
+              <caret line="63" column="57" lean-forward="false" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
               <folding>
                 <element signature="e#24#54#0" expanded="true" />
-                <element signature="e#1479#1551#0" expanded="false" />
-                <element signature="e#2290#2315#0" expanded="false" />
-                <element signature="e#8789#8802#0" expanded="false" />
+                <element signature="e#8774#8787#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -74,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="common.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="97">
@@ -193,14 +185,14 @@
         <option value="$PROJECT_DIR$/dbChoiceType.csv" />
         <option value="$PROJECT_DIR$/TmallBrandNewSpider.py" />
         <option value="$PROJECT_DIR$/TmallYuShouPriceSpider.py" />
-        <option value="$PROJECT_DIR$/tmallSpiderP.py" />
         <option value="$PROJECT_DIR$/common.py" />
         <option value="$PROJECT_DIR$/allShopID.csv" />
+        <option value="$PROJECT_DIR$/tmallSpiderP.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="684" />
+    <option name="x" value="303" />
     <option name="y" value="23" />
     <option name="width" value="1879" />
     <option name="height" value="1057" />
@@ -470,7 +462,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="684" y="23" width="1879" height="1057" extended-state="0" />
+    <frame x="303" y="23" width="1879" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16058792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -733,19 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tmallSpiderP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="240" column="54" lean-forward="true" selection-start-line="240" selection-start-column="54" selection-end-line="240" selection-end-column="54" />
-          <folding>
-            <element signature="e#24#54#0" expanded="true" />
-            <element signature="e#1479#1551#0" expanded="false" />
-            <element signature="e#2290#2315#0" expanded="false" />
-            <element signature="e#8789#8802#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TmallBrandNewSpider.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3209">
@@ -790,6 +769,17 @@
             <element signature="e#15693#15896#0" expanded="false" />
             <element signature="e#15920#17794#0" expanded="false" />
             <element signature="e#17820#17920#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tmallSpiderP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="63" column="57" lean-forward="false" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
+          <folding>
+            <element signature="e#24#54#0" expanded="true" />
+            <element signature="e#8774#8787#0" expanded="false" />
           </folding>
         </state>
       </provider>
