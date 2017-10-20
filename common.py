@@ -29,11 +29,16 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-client = pymongo.MongoClient('localhost',27017)
+# client = pymongo.MongoClient('localhost',27017)
+
+client = pymongo.MongoClient('192.168.3.172',27017)
+
 db = client.TmallYuShouDB
 givenIDTable = db.TmallGivenIDTB
 
 givenIDToTmallYuShouTable = db.TmallYuShouTB
+
+TmallYuShouBaseInfoTable = db.TmallYuShouBaseInfoTB
 
 tmallYuShouTable = db.TmallYSDetailTB
 
@@ -246,7 +251,7 @@ def tmallLogin(driver,UnexpectedAlertPresentException,ActionChains):
         driver.delete_all_cookies()
         driver.switch_to.frame("J_loginIframe")
         while True:
-            time.sleep(random.randint(2,4))
+            time.sleep(random.randint(4,6))
             # TODO:XDF:1 因为无头浏览器是无界面的，所以只能通过截图来查看过程，下面同理（仅仅针对phantomjs无头浏览器，其它会报错）
             # driver.save_screenshot('RecordProcess/process1.png')
 
@@ -260,10 +265,10 @@ def tmallLogin(driver,UnexpectedAlertPresentException,ActionChains):
             # TODO:XDF:2
             driver.find_element_by_name("TPL_username").clear()
             driver.find_element_by_name("TPL_username").send_keys("13672456277")
-            time.sleep(random.uniform(3, 6))
+            time.sleep(random.uniform(4, 6))
             driver.find_element_by_name("TPL_password").clear()
             driver.find_element_by_name("TPL_password").send_keys("248552ZZN")
-            time.sleep(random.uniform(3, 5))
+            time.sleep(random.uniform(4, 5))
 
             if codeSEL(driver) == True:
                 dragger = driver.find_element_by_class_name("nc_bg")
@@ -288,7 +293,7 @@ def tmallLogin(driver,UnexpectedAlertPresentException,ActionChains):
                 action.release().perform()
 
 
-            time.sleep(1.5)
+            time.sleep(2)
             # driver.save_screenshot('RecordProcess/codeLogin1.png')
             # TODO:XDF:3
             driver.find_element_by_xpath('//*[@id="J_SubmitStatic"]').click()
@@ -372,12 +377,44 @@ def saveTmallGivenIDToYuShouTB(productData):
         print 'saveTmallYuShouTable_Error...'
 
 # 保存天猫数据到mongodb中
+def saveTmallBaseInfoTBToMongodb(tmallYuShouProduct):
+    try:
+        if TmallYuShouBaseInfoTable.insert(tmallYuShouProduct):
+            print ('tmallYuShouProduct saveSuccess')
+    except Exception as e:
+        print ('save_Error...%s' % e)
+
+#预售宝贝详情BaseInfo，如果TreasureID存在，则更新
+def UpdateTmallBaseInfoTB(ProductData):
+    try:
+        if TmallYuShouBaseInfoTable.update({'TreasureID':ProductData['TreasureID']},{'$set':{'presellPrice':ProductData['presellPrice'],'modifyTime':ProductData['modifyTime'],
+                                                                                             'spiderTime':ProductData['spiderTime'],'CollectionNum':ProductData['CollectionNum'],
+                                                                                             'reserveCount':ProductData['reserveCount']}}):
+            print 'update successful*****'
+    except Exception as e:
+        print 'update error******%s'%e
+
+
+
+
+# 保存天猫数据到mongodb中
 def saveTmallYuShouToMongodb(tmallYuShouProduct):
     try:
         if tmallYuShouTable.insert(tmallYuShouProduct):
             print ('tmallYuShouProduct saveSuccess')
     except Exception as e:
         print ('save_Error...%s' % e)
+
+# 更新预售宝贝表  保存天猫数据到mongodb中
+def UpdateTmallYuShouTB(tmallYuShouProduct):
+    try:
+        if tmallYuShouTable.update({'TreasureID':tmallYuShouProduct['TreasureID']},{'$set':{'reserveCount':tmallYuShouProduct['reserveCount'],'presellPrice':tmallYuShouProduct['presellPrice'],
+                                                                                             'modifyTime':tmallYuShouProduct['modifyTime'],'CollectionNum':tmallYuShouProduct['CollectionNum'],
+                                                                                            'spiderTime': tmallYuShouProduct['spiderTime'],'JHSmodifyTime':tmallYuShouProduct['JHSmodifyTime']}}):
+            print 'update successful*****'
+    except Exception as e:
+        print 'update error******%s'%e
+
 
 
 def getProductData():
@@ -491,7 +528,24 @@ def DBTypechoice():
         print '不相等'
 
 
+"""
+    这里得先进行一下数据迁移
+"""
+def TmallYuShouMoveData():
+    givenIDToTmallYuShouTable.find({})
+
+
+def TmallYuShouBaseInfoData():
+    result = TmallYuShouBaseInfoTable.find({})
+    BaseInfoList = []
+    for data in result:
+        BaseInfoList.append(data['TreasureID'])
+    return BaseInfoList
+
+
 if __name__ == '__main__':
+
+    TmallYuShouBaseInfoData()
 
     # for i in dbChoice:
     #     print dbChoice[i]['tmallYuShouSql']

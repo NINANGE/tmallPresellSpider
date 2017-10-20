@@ -322,19 +322,8 @@ def getDetailFilterData(driver,wait,resultData,YuShouPriceData,ShopName):
 
                 if judgeHaveTreasureID(product,'') == True:
                     InsertOrUpdateBaseInfo(product, 'Update')
-
                 else:
-                    # InsertSqlList.append((' ',product['TreasureID'],str(product['title']),str(product['detailURL']),str(product['ShopID']),ShopName,
-                    # 1,1,0,'1',strToDateTime(currentTime,'sixLineTypes'),strToDateTime(currentTime,'sixLineTypes'),'0',product['categoryName'],'0',' ',spuId,product['EvaluationScores'],0,product['ShopURL'],product['mainPic'],product['mainPic'],'1',product['URL_NO'],
-                    # product['categoryId'],product['brandId'],product['brand'],product['rootCatId'],StyleName,strToDateTime(currentTime,'sixLineTypes'),product['ReservationStatus'],strToDateTime(currentTime,'sixLineTypes'),
-                    #                                                                    strToDateTime(currentTime,'sixLineTypes'),product['CollectionNum'],strToDateTime(currentTime,'sixLineTypes'),
-                    #                                                                    product['ItemName'],EvaluationNewTime,strToDateTime(currentTime,'sixLineTypes'),strToDateTime(currentTime,'sixLineTypes'),product['NCategory_Name'],product['NStyleName'],
-                    #                       product['presellPrice']))
-                    # if  len(InsertSqlList)==20:
                     InsertOrUpdateBaseInfo(product, 'Insert')
-                        # InsertSqlList=[]
-
-                    # print '测试+++%s'%InsertSqlList
 
                 InsertPreSaleNew(product)
 
@@ -377,68 +366,7 @@ def YuShouPrice(list):
 
 if __name__ == '__main__':
 
-    # if str(dbChoice['TmallYuShouEnemyShopSql'][0]) == 'Mongodb':
-    #     print '相等'
-    #
     tmallBrandNews()
-
-    # nowTime = datetime.datetime.strptime(str(allShopName['YuShouStartTime'][0]), '%Y-%m-%d %H:%M:%S')
-    #
-    # endTime = datetime.datetime.strptime(str(allShopName['YuShouEndTime'][0]), '%Y-%m-%d %H:%M:%S')
-    #
-    # print nowTime,type(nowTime),type(endTime),now(),endTime
-    #
-    # if now() > str(allShopName['YuShouEndTime'][0]):
-    #     print '过期'
-    # else:
-    #     print '没过期'
-
-
-    # SelectShopTempletes()
-    # for i in range(0, len(allShopName)):
-    #     if ExistenceShopName(allShopName['shopName'][i]) == True:  # 这里证明这家店铺是没有被爬过的
-    #         # InsertShopTempletes(allShopName['shopName'][i], URL_NO)
-    #         print '存在'
-    #         break
-
-    # TreasureID = 12345645
-    # DDD = '45444'
-    #
-    # TreasureID1 = 123456451111
-    # DDD1 = '4544411111'
-    # pricesList = []
-    # pricesList.append()
-    # prices = {TreasureID:DDD}
-    # print prices[TreasureID]
-
-    # ceShiProduct()
-    # pool = TheaderPool(processes=4)
-    # pool.map_async(tmallBrandNews(),range())
-
-    # headers = {
-    #     'UserAgent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36',
-    #     'Host':'www1.rmfysszc.gov.cn'
-    # }
-    # #
-    # url = 'http://www1.rmfysszc.gov.cn/ProjectHandle.shtml'
-    # # 发送一个http请求
-    # request = urllib2.Request(url=url, headers=headers)
-    # # 获得回送的数据
-    # response = urllib2.urlopen(request)
-    #
-    # datas = response.read()
-    # print  datas
-
-    # url = 'http://httpbin.org/post'
-    # s = json.dumps({})
-    # r = requests.post(url, data=s,headers=headers)
-    # print r.text
-
-    # YuShouPric = ['111','144555555','44444']
-    # for data in range(0,len(YuShouPric)):
-    #     print YuShouPric[data]
-
-
 
 
 

@@ -125,7 +125,7 @@ def InsertPreSaleNew(product):
 
 
     sql_text = "insert into T_Treasures_PreSale values ('%s','%s','%s','%s','%s','%s','%d','%.2f','%.2f','%d','%s','%s','%s','%d','%d')"%(uuid.uuid1(),  product['TreasureID'], product['StartTime'], product['EndTime'],
-                        strToDateTime(product['paymentBeginDate'], 'fiveColonTypes'),strToDateTime(product['paymentFinishDate'], 'fiveColonTypes'),0,0.0,0.0,product['CollectionNum'],product['URL_NO'],modifyTime,modifyTime,0,0)
+                        strToDateTime(product['paymentBeginDate'], 'fiveColonTypes'),strToDateTime(product['paymentFinishDate'], 'fiveColonTypes'),product['reserveCount'],product['presellPrice'],0.0,product['CollectionNum'],product['URL_NO'],modifyTime,modifyTime,0,0)
 
     conn.exec_non_query(sql_text)
     print '*******预售宝贝表插入成功********'
