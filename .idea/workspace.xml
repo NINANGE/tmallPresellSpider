@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8555e2eb-1ee7-4411-9fb3-3e2c2f8a85b0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common.py" afterPath="$PROJECT_DIR$/common.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tmallSpiderP.py" afterPath="$PROJECT_DIR$/tmallSpiderP.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +19,15 @@
       <file leaf-file-name="tmallSpiderP.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tmallSpiderP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="63" column="57" lean-forward="false" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
+            <state relative-caret-position="101">
+              <caret line="176" column="0" lean-forward="true" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
               <folding>
                 <element signature="e#24#54#0" expanded="true" />
-                <element signature="e#8774#8787#0" expanded="false" />
+                <element signature="e#2299#2324#0" expanded="false" />
+                <element signature="e#8749#8762#0" expanded="false" />
+                <element signature="e#14138#26798#0" expanded="false" />
+                <element signature="e#15016#15041#0" expanded="false" />
+                <element signature="e#21479#21492#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -30,11 +36,9 @@
       <file leaf-file-name="TmallYuShouPriceSpider.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TmallYuShouPriceSpider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-327">
-              <caret line="27" column="70" lean-forward="false" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
-              <folding>
-                <element signature="e#6764#14003#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="177">
+              <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -42,11 +46,9 @@
       <file leaf-file-name="TmallBrandNewSpider.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TmallBrandNewSpider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3209">
-              <caret line="92" column="29" lean-forward="true" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
-              <folding>
-                <element signature="e#24#54#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="177">
+              <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,8 +56,8 @@
       <file leaf-file-name="EnemySpider.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/EnemySpider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="351" column="36" lean-forward="true" selection-start-line="351" selection-start-column="36" selection-end-line="351" selection-end-column="36" />
+            <state relative-caret-position="182">
+              <caret line="45" column="25" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="25" />
               <folding>
                 <element signature="e#24#54#0" expanded="true" />
                 <element signature="e#7843#10089#0" expanded="false" />
@@ -69,8 +71,8 @@
       <file leaf-file-name="common.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="393" column="26" lean-forward="true" selection-start-line="393" selection-start-column="26" selection-end-line="393" selection-end-column="26" />
+            <state relative-caret-position="191">
+              <caret line="468" column="4" lean-forward="false" selection-start-line="468" selection-start-column="4" selection-end-line="468" selection-end-column="4" />
               <folding>
                 <element signature="e#24#67#0" expanded="true" />
                 <element signature="e#943#1142#0" expanded="false" />
@@ -87,13 +89,22 @@
                 <element signature="e#8840#9749#0" expanded="false" />
                 <element signature="e#10362#10656#0" expanded="false" />
                 <element signature="e#10722#11327#0" expanded="false" />
-                <element signature="e#14464#15085#0" expanded="false" />
-                <element signature="e#15268#15434#0" expanded="false" />
-                <element signature="e#15481#15654#0" expanded="false" />
-                <element signature="e#15693#15896#0" expanded="false" />
-                <element signature="e#15920#17794#0" expanded="false" />
-                <element signature="e#17820#17920#0" expanded="false" />
+                <element signature="e#14482#15103#0" expanded="false" />
+                <element signature="e#15286#15452#0" expanded="false" />
+                <element signature="e#15499#15672#0" expanded="false" />
+                <element signature="e#15938#17812#0" expanded="false" />
+                <element signature="e#17838#17938#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="allShopID.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/allShopID.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="662">
+              <caret line="1170" column="12" lean-forward="false" selection-start-line="1170" selection-start-column="12" selection-end-line="1170" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,8 +112,8 @@
       <file leaf-file-name="connectModel.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/connectModel.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
+            <state relative-caret-position="129">
+              <caret line="367" column="16" lean-forward="false" selection-start-line="367" selection-start-column="13" selection-end-line="367" selection-end-column="16" />
               <folding>
                 <element signature="e#24#41#0" expanded="true" />
                 <element signature="e#332#3363#0" expanded="false" />
@@ -111,7 +122,6 @@
                 <element signature="e#12178#13031#1" expanded="false" />
                 <element signature="e#13067#13848#0" expanded="false" />
                 <element signature="e#14236#15005#0" expanded="false" />
-                <element signature="e#15128#17128#0" expanded="false" />
                 <element signature="e#17160#17326#0" expanded="false" />
               </folding>
             </state>
@@ -130,15 +140,11 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>BaseInfo</find>
-      <find>getCommentBestNewTime</find>
-      <find>NewsPrice</find>
       <find>login success</find>
       <find>Re_pre</find>
       <find>clearToReplaceData</find>
       <find>件</find>
       <find>reserveCount</find>
-      <find>tmallYuShouTable</find>
       <find>saveTmallYuShouToMongodb</find>
       <find>登录</find>
       <find>TmallYuShouEnemyShopSql</find>
@@ -157,9 +163,13 @@
       <find>TmallYuShouBaseInfoTable</find>
       <find>tmallGivenIDAndShopName</find>
       <find>3113012946929</find>
-      <find>paymentBeginDate</find>
       <find>tmallYuShouSql</find>
       <find>TreasureID</find>
+      <find>UpdateTmallYuShouTB</find>
+      <find>tmallYuShouTable</find>
+      <find>saveTmallGivenIDToYuShouTB</find>
+      <find>paymentBeginDate</find>
+      <find>man</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -185,14 +195,14 @@
         <option value="$PROJECT_DIR$/dbChoiceType.csv" />
         <option value="$PROJECT_DIR$/TmallBrandNewSpider.py" />
         <option value="$PROJECT_DIR$/TmallYuShouPriceSpider.py" />
-        <option value="$PROJECT_DIR$/common.py" />
         <option value="$PROJECT_DIR$/allShopID.csv" />
+        <option value="$PROJECT_DIR$/common.py" />
         <option value="$PROJECT_DIR$/tmallSpiderP.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="303" />
+    <option name="x" value="365" />
     <option name="y" value="23" />
     <option name="width" value="1879" />
     <option name="height" value="1057" />
@@ -267,7 +277,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.common">
+  <component name="RunManager" selected="Python.tmallSpiderP">
     <configuration default="false" name="tmallSpiderP" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -431,8 +441,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.common" />
-        <item index="1" class="java.lang.String" itemvalue="Python.tmallSpiderP" />
+        <item index="0" class="java.lang.String" itemvalue="Python.tmallSpiderP" />
+        <item index="1" class="java.lang.String" itemvalue="Python.common" />
         <item index="2" class="java.lang.String" itemvalue="Python.TmallBrandNewSpider" />
         <item index="3" class="java.lang.String" itemvalue="Python.connectModel" />
         <item index="4" class="java.lang.String" itemvalue="Python.TaoBaoCommentData" />
@@ -462,7 +472,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="303" y="23" width="1879" height="1057" extended-state="0" />
+    <frame x="365" y="23" width="1879" height="1057" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16058792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -470,7 +480,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23829344" sideWeight="0.5022831" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2373057" sideWeight="0.4977169" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3523316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3523316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32953367" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -676,10 +686,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dbChoiceType.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/allShopID.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="662">
+          <caret line="1170" column="12" lean-forward="false" selection-start-line="1170" selection-start-column="12" selection-end-line="1170" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TmallYuShouPriceSpider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TmallBrandNewSpider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="14" column="37" lean-forward="false" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/EnemySpider.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="351" column="36" lean-forward="true" selection-start-line="351" selection-start-column="36" selection-end-line="351" selection-end-column="36" />
+        <state relative-caret-position="182">
+          <caret line="45" column="25" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="25" />
           <folding>
             <element signature="e#24#54#0" expanded="true" />
             <element signature="e#7843#10089#0" expanded="false" />
@@ -689,20 +731,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TmallYuShouPriceSpider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-327">
-          <caret line="27" column="70" lean-forward="false" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
-          <folding>
-            <element signature="e#6764#14003#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/connectModel.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="396" column="0" lean-forward="true" selection-start-line="396" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
+        <state relative-caret-position="129">
+          <caret line="367" column="16" lean-forward="false" selection-start-line="367" selection-start-column="13" selection-end-line="367" selection-end-column="16" />
           <folding>
             <element signature="e#24#41#0" expanded="true" />
             <element signature="e#332#3363#0" expanded="false" />
@@ -711,42 +743,15 @@
             <element signature="e#12178#13031#1" expanded="false" />
             <element signature="e#13067#13848#0" expanded="false" />
             <element signature="e#14236#15005#0" expanded="false" />
-            <element signature="e#15128#17128#0" expanded="false" />
             <element signature="e#17160#17326#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dbChoiceType.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TmallBrandNewSpider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3209">
-          <caret line="92" column="29" lean-forward="true" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
-          <folding>
-            <element signature="e#24#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/allShopID.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="1170" column="12" lean-forward="true" selection-start-line="1170" selection-start-column="12" selection-end-line="1170" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="393" column="26" lean-forward="true" selection-start-line="393" selection-start-column="26" selection-end-line="393" selection-end-column="26" />
+        <state relative-caret-position="191">
+          <caret line="468" column="4" lean-forward="false" selection-start-line="468" selection-start-column="4" selection-end-line="468" selection-end-column="4" />
           <folding>
             <element signature="e#24#67#0" expanded="true" />
             <element signature="e#943#1142#0" expanded="false" />
@@ -763,23 +768,26 @@
             <element signature="e#8840#9749#0" expanded="false" />
             <element signature="e#10362#10656#0" expanded="false" />
             <element signature="e#10722#11327#0" expanded="false" />
-            <element signature="e#14464#15085#0" expanded="false" />
-            <element signature="e#15268#15434#0" expanded="false" />
-            <element signature="e#15481#15654#0" expanded="false" />
-            <element signature="e#15693#15896#0" expanded="false" />
-            <element signature="e#15920#17794#0" expanded="false" />
-            <element signature="e#17820#17920#0" expanded="false" />
+            <element signature="e#14482#15103#0" expanded="false" />
+            <element signature="e#15286#15452#0" expanded="false" />
+            <element signature="e#15499#15672#0" expanded="false" />
+            <element signature="e#15938#17812#0" expanded="false" />
+            <element signature="e#17838#17938#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tmallSpiderP.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="63" column="57" lean-forward="false" selection-start-line="63" selection-start-column="57" selection-end-line="63" selection-end-column="57" />
+        <state relative-caret-position="101">
+          <caret line="176" column="0" lean-forward="true" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
           <folding>
             <element signature="e#24#54#0" expanded="true" />
-            <element signature="e#8774#8787#0" expanded="false" />
+            <element signature="e#2299#2324#0" expanded="false" />
+            <element signature="e#8749#8762#0" expanded="false" />
+            <element signature="e#14138#26798#0" expanded="false" />
+            <element signature="e#15016#15041#0" expanded="false" />
+            <element signature="e#21479#21492#0" expanded="false" />
           </folding>
         </state>
       </provider>

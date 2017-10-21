@@ -400,7 +400,7 @@ def UpdateTmallBaseInfoTB(ProductData):
 # 保存天猫数据到mongodb中
 def saveTmallYuShouToMongodb(tmallYuShouProduct):
     try:
-        if tmallYuShouTable.insert(tmallYuShouProduct):
+        if givenIDToTmallYuShouTable.insert(tmallYuShouProduct):
             print ('tmallYuShouProduct saveSuccess')
     except Exception as e:
         print ('save_Error...%s' % e)
@@ -408,7 +408,7 @@ def saveTmallYuShouToMongodb(tmallYuShouProduct):
 # 更新预售宝贝表  保存天猫数据到mongodb中
 def UpdateTmallYuShouTB(tmallYuShouProduct):
     try:
-        if tmallYuShouTable.update({'TreasureID':tmallYuShouProduct['TreasureID']},{'$set':{'reserveCount':tmallYuShouProduct['reserveCount'],'presellPrice':tmallYuShouProduct['presellPrice'],
+        if givenIDToTmallYuShouTable.update({'TreasureID':tmallYuShouProduct['TreasureID']},{'$set':{'reserveCount':tmallYuShouProduct['reserveCount'],'presellPrice':tmallYuShouProduct['presellPrice'],
                                                                                              'modifyTime':tmallYuShouProduct['modifyTime'],'CollectionNum':tmallYuShouProduct['CollectionNum'],
                                                                                             'spiderTime': tmallYuShouProduct['spiderTime'],'JHSmodifyTime':tmallYuShouProduct['JHSmodifyTime']}}):
             print 'update successful*****'
@@ -536,7 +536,7 @@ def TmallYuShouMoveData():
 
 
 def TmallYuShouBaseInfoData():
-    result = TmallYuShouBaseInfoTable.find({})
+    result = TmallYuShouBaseInfoTable.find({}).sort([('modifyTime',-1)])
     BaseInfoList = []
     for data in result:
         BaseInfoList.append(data['TreasureID'])
@@ -545,7 +545,15 @@ def TmallYuShouBaseInfoData():
 
 if __name__ == '__main__':
 
-    TmallYuShouBaseInfoData()
+    BaseInfo = TmallYuShouBaseInfoData()
+    for k in range(0, len(BaseInfo)):
+        if BaseInfo[k] in BaseInfo:
+            print '存在'
+        else:
+            print '不存在'
+
+
+
 
     # for i in dbChoice:
     #     print dbChoice[i]['tmallYuShouSql']
