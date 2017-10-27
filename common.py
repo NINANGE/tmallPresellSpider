@@ -31,7 +31,8 @@ sys.setdefaultencoding('utf-8')
 
 # client = pymongo.MongoClient('localhost',27017)
 
-client = pymongo.MongoClient('192.168.3.172',27017)
+# client = pymongo.MongoClient('192.168.3.172',27017)
+client = pymongo.MongoClient('192.168.2.5',27017)
 
 db = client.TmallYuShouDB
 givenIDTable = db.TmallGivenIDTB

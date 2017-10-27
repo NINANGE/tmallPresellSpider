@@ -38,39 +38,39 @@ sys.setdefaultencoding('utf-8')
 #TODO:EXP 这是直接从数据库里拿产品ID进行更新
 def tmallGivenIDAndShopName():
     # TODO:XDF Chrome欲歌浏览器
-    options = webdriver.ChromeOptions()
-    # options.add_extension('AdBlock_v3.15.0.crx') # TODO:XDF Chrome欲歌广告过滤插件
-    # 设置中文
-    options.add_argument('lang=zh_CN.UTF-8')
-    prefs = {"profile.managed_default_content_settings.images": 2}
-    options.add_experimental_option("prefs", prefs)  # TODO:XDF 禁止加载图片
-    # 更换头部
-    options.add_argument(
-        'user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
-    # driver = webdriver.Chrome(chrome_options=options,
-    #                           executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
-    driver = webdriver.Chrome(executable_path=r'/Users/zhuoqin/Downloads/123456/chromedriver')  # chrome_options=options,
-    wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
+    # options = webdriver.ChromeOptions()
+    # # options.add_extension('AdBlock_v3.15.0.crx') # TODO:XDF Chrome欲歌广告过滤插件
+    # # 设置中文
+    # options.add_argument('lang=zh_CN.UTF-8')
+    # prefs = {"profile.managed_default_content_settings.images": 2}
+    # options.add_experimental_option("prefs", prefs)  # TODO:XDF 禁止加载图片
+    # # 更换头部
+    # options.add_argument(
+    #     'user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
+    # # driver = webdriver.Chrome(chrome_options=options,
+    # #                           executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
+    # driver = webdriver.Chrome(executable_path=r'/Users/zhuoqin/Downloads/123456/chromedriver')  # chrome_options=options,
+    # wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
 
     # TODO:XDF PhantomJS无头浏览器
-    # dcap = dict(DesiredCapabilities.PHANTOMJS)
-    # dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36")  # 设置user-agent请求头
-    # dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
+    dcap = dict(DesiredCapabilities.PHANTOMJS)
+    dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36")  # 设置user-agent请求头
+    dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
+
+    print ('即将开始。。。')
+    service_args = []
+    service_args.append('--load-images=no')  ##关闭图片加载
+    service_args.append('--disk-cache=yes')  ##开启缓存
+    service_args.append('--ignore-ssl-errors=true')  ##忽略https错误
+    #TODO:XDF 针对本地调试
+    # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs',service_args=service_args,desired_capabilities=dcap)
     #
-    # print ('即将开始。。。')
-    # service_args = []
-    # service_args.append('--load-images=no')  ##关闭图片加载
-    # service_args.append('--disk-cache=yes')  ##开启缓存
-    # service_args.append('--ignore-ssl-errors=true')  ##忽略https错误
-    # #TODO:XDF 针对本地调试
-    # # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs',service_args=service_args,desired_capabilities=dcap)
-    # #
-    # driver = webdriver.PhantomJS(executable_path=r'/usr/bin/phantomjs', service_args=service_args,desired_capabilities=dcap)  # TODO:XDF 针对Linux
-    # # # TODO:XDF 针对Linux服务器
-    # wait = WebDriverWait(driver, 60, 0.5)  # 表示给browser浏览器一个10秒的加载时间
-    # #
-    # driver.implicitly_wait(30)
-    # driver.set_page_load_timeout(30)
+    driver = webdriver.PhantomJS(executable_path=r'/usr/bin/phantomjs', service_args=service_args,desired_capabilities=dcap)  # TODO:XDF 针对Linux
+    # # TODO:XDF 针对Linux服务器
+    wait = WebDriverWait(driver, 60, 0.5)  # 表示给browser浏览器一个10秒的加载时间
+    #
+    driver.implicitly_wait(30)
+    driver.set_page_load_timeout(30)
     print ('等待中。。。')
 
     while True:
@@ -294,7 +294,7 @@ def tmallGivenIDAndShopName():
             except Exception as e:
                 print ('error---%s'%e)
 
-        time.sleep(3600)
+        time.sleep(7200)
 
     print ('---------------名字----1')
 
@@ -305,45 +305,45 @@ def tmallGivenIDAndShopName():
 #TODO:EXP 给定ID和店铺情况
 def tmallGivenIDFromAllShopID():
     # TODO:XDF Chrome欲歌浏览器
-    options = webdriver.ChromeOptions()
-    # options.add_extension('AdBlock_v3.15.0.crx') # TODO:XDF Chrome欲歌广告过滤插件
-    # 设置中文
-    options.add_argument('lang=zh_CN.UTF-8')
-    prefs = {"profile.managed_default_content_settings.images": 2}
-    options.add_experimental_option("prefs", prefs)  # TODO:XDF 禁止加载图片
-    # 更换头部
-    options.add_argument(
-        'user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
-    # driver = webdriver.Chrome(chrome_options=options,
-    #                           executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
-    driver = webdriver.Chrome(executable_path=r'/Users/zhuoqin/Downloads/123456/chromedriver')  # chrome_options=options,
-    wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
+    # options = webdriver.ChromeOptions()
+    # # options.add_extension('AdBlock_v3.15.0.crx') # TODO:XDF Chrome欲歌广告过滤插件
+    # # 设置中文
+    # options.add_argument('lang=zh_CN.UTF-8')
+    # prefs = {"profile.managed_default_content_settings.images": 2}
+    # options.add_experimental_option("prefs", prefs)  # TODO:XDF 禁止加载图片
+    # # 更换头部
+    # options.add_argument(
+    #     'user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36"')
+    # # driver = webdriver.Chrome(chrome_options=options,
+    # #                           executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/chromedriver')
+    # driver = webdriver.Chrome(executable_path=r'/Users/zhuoqin/Downloads/123456/chromedriver')  # chrome_options=options,
+    # wait = WebDriverWait(driver, 200, 0.5)  # 表示给browser浏览器一个10秒的加载时间
 
     # TODO:XDF PhantomJS无头浏览器
-    # dcap = dict(DesiredCapabilities.PHANTOMJS)
-    # dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36")  # 设置user-agent请求头
-    # dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
+    dcap = dict(DesiredCapabilities.PHANTOMJS)
+    dcap["phantomjs.page.settings.userAgent"] = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36")  # 设置user-agent请求头
+    dcap["phantomjs.page.settings.loadImages"] = False  # 禁止加载图片
+
+    print ('即将开始。。。')
+    service_args = []
+    service_args.append('--load-images=no')  ##关闭图片加载
+    service_args.append('--disk-cache=yes')  ##开启缓存
+    service_args.append('--ignore-ssl-errors=true')  ##忽略https错误
+    #TODO:XDF 针对本地调试
+    # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs',service_args=service_args,desired_capabilities=dcap)
     #
-    # print ('即将开始。。。')
-    # service_args = []
-    # service_args.append('--load-images=no')  ##关闭图片加载
-    # service_args.append('--disk-cache=yes')  ##开启缓存
-    # service_args.append('--ignore-ssl-errors=true')  ##忽略https错误
-    # #TODO:XDF 针对本地调试
-    # # driver = webdriver.PhantomJS(executable_path=r'/Users/zhuoqin/Desktop/Python/SeleniumDemo/phantomjs',service_args=service_args,desired_capabilities=dcap)
-    # #
-    # driver = webdriver.PhantomJS(executable_path=r'/usr/bin/phantomjs', service_args=service_args,desired_capabilities=dcap)  # TODO:XDF 针对Linux
-    # # # TODO:XDF 针对Linux服务器
-    # wait = WebDriverWait(driver, 60, 0.5)  # 表示给browser浏览器一个10秒的加载时间
-    # #
-    # driver.implicitly_wait(30)
-    # driver.set_page_load_timeout(30)
+    driver = webdriver.PhantomJS(executable_path=r'/usr/bin/phantomjs', service_args=service_args,desired_capabilities=dcap)  # TODO:XDF 针对Linux
+    # # TODO:XDF 针对Linux服务器
+    wait = WebDriverWait(driver, 60, 0.5)  # 表示给browser浏览器一个10秒的加载时间
+    #
+    driver.implicitly_wait(30)
+    driver.set_page_load_timeout(30)
     print ('等待中。。。')
 
     while True:
         BaseInfo = TmallYuShouBaseInfoData()
         for k in range(0,len(ownShopID)):
-            time.sleep(random.uniform(6, 10))
+            time.sleep(random.uniform(5, 8))
             TreasureID = str(ownShopID['shopID'][k]).replace(' ','')
             driver.get('https://detail.tmall.com/item.htm?id=%s' % TreasureID)
             print ('https://detail.tmall.com/item.htm?id=%s' % TreasureID)
@@ -363,7 +363,7 @@ def tmallGivenIDFromAllShopID():
             except Exception as e:
                 print '显性未加载成功---%s' % e
 
-            time.sleep(random.randint(4,5)) #这里得让他睡眠一下，否则第二页开始会报错(加载数据)
+            time.sleep(random.randint(3, 5))#这里得让他睡眠一下，否则第二页开始会报错(加载数据)
 
             # driver.implicitly_wait(30) #隐性等待30秒，如果30之内页面加载完毕，往下执行，否则超时会报错，需要处理
             html =driver.page_source  #这是一面的页面内容
@@ -576,6 +576,7 @@ def now():
 if __name__ == '__main__':
     # tmallDataSEL()
     tmallGivenIDAndShopName()
+    # tmallGivenIDFromAllShopID()
 
 
 
